@@ -28,3 +28,5 @@ jobs:
         with:
           egress-policy: audit
       - uses: snyk/actions/docker@master
+        with:
+          command: auth
