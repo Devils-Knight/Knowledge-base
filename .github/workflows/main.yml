@@ -27,12 +27,9 @@ jobs:
       - uses: step-security/harden-runner@v1
         with:
           egress-policy: audit
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+      - name: run aliyun/acr-login 
+        uses: aliyun/acr-login@v1
         with:
-          image-ref: aquasec/trivy:0.22.0
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          login-server: '<login server>' # default: https://index.docker.io/v1/
+          username: '<username>'
+          password: '<password>'
