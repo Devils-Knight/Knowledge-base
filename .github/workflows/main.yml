@@ -27,9 +27,10 @@ jobs:
       - uses: step-security/harden-runner@v1
         with:
           egress-policy: audit
-      - name: run aliyun/acr-login 
-        uses: aliyun/acr-login@v1
+      - name: Trigger APIsec scan
+        id: scan
+        uses: apisec-inc/apisec-run-scan@v1.0.3
         with:
-          login-server: '<login server>' # default: https://index.docker.io/v1/
-          username: '<username>'
-          password: '<password>'
+          apisec-username: ${{ secrets.apisec_username }}
+          apisec-password: ${{ secrets.apisec_password }}
+          apisec-project: "VAmPI"
