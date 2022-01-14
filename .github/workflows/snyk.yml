@@ -18,5 +18,6 @@ jobs:
           egress-policy: audit
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: d12b6552-a860-4de9-9955-37f40f0f0af4
