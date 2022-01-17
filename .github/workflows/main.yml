@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: step-security/harden-runner@v1
+        with:
+          egress-policy: audit
+      - uses: actions/setup-haskell@v1.1
+        with:
+          ghc-version: '8.8' # Resolves to the latest point release of GHC 8.8
+          cabal-version: '3.0.0.0' # Exact version of Cabal
+      - run: runhaskell Hello.hs
