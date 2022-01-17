@@ -16,12 +16,5 @@ jobs:
       - uses: step-security/harden-runner@v1
         with:
           egress-policy: audit
-      - name: Buildah Action
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: my-new-image
-          tags: v1 ${{ github.sha }}
-          containerfiles: |
-            ./Containerfile
-          build-args: |
-            some_arg=some_value
+      - uses: actions/setup-haskell@v1.1
+      - run: runhaskell Hello.hs
